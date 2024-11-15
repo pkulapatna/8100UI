@@ -1,0 +1,56 @@
+﻿ // [DllImport(“USER32.DLL”)]
+        //  public static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        public static extern int SetForegroundWindow(IntPtr hwnd);
+
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+        private static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
+
+        private enum ShowWindowEnum
+        {
+            Hide = 0,
+            ShowNormal = 1, ShowMinimized = 2, ShowMaximized = 3,
+            Maximize = 3, ShowNormalNoActivate = 4, Show = 5,
+            Minimize = 6, ShowMinNoActivate = 7, ShowNoActivate = 8,
+            Restore = 9, ShowDefault = 10, ForceMinimized = 11
+        };
+
+        public void BringMainWindowToFront(string processName)
+        {
+            // get the process
+            Process bProcess = Process.GetProcessesByName(processName).FirstOrDefault();
+
+            // check if the process is running
+            if (bProcess != null)
+            {
+                // check if the window is hidden / minimized
+                if (bProcess.MainWindowHandle == IntPtr.Zero)
+                {
+                    // the window is hidden so try to restore it before setting focus.
+                    ShowWindow(bProcess.Handle, ShowWindowEnum.ShowDefault);
+                }
+                // set user the focus to the window
+                SetForegroundWindow(bProcess.MainWindowHandle);
+            }
+        }
+
+
+[DllImport("user32.dll")]
+public static extern bool ShowWindowAsync(HandleRef hWnd, int nCmdShow);
+[DllImport("user32.dll")]
+public static extern bool SetForegroundWindow(IntPtr WindowHandle);
+public const int SW_RESTORE = 9;
+    
+private void FocusProcess(string procName)
+{
+  Process[] objProcesses = System.Diagnostics.Process.GetProcessesByName(procName); 
+  if (objProcesses.Length > 0)
+  {
+    IntPtr hWnd = IntPtr.Zero;
+    hWnd = objProcesses[0].MainWindowHandle;
+    ShowWindowAsync(new HandleRef(null,hWnd), SW_RESTORE);
+    SetForegroundWindow(objProcesses[0].MainWindowHandle);
+  }
+}

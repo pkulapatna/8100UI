@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="MenuBarOne.Views.MenuBarOneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MenuBarOne.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="1000">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FFECEAEA" Offset="0.89"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu HorizontalAlignment="Left" Height="25" Grid.Column="0"  
+                      VerticalAlignment="Center" Width="auto" FontSize="14" Background="Transparent"
+                      HorizontalContentAlignment="Left" Margin="0,0,0,0" Foreground="Black" >
+            <MenuItem Header="Conveyors" Width="auto" Margin="10,0,0,0">
+                <MenuItem Header="Clear Bales on all Conveyors" Width="auto"  Command="{Binding ClearAllCommand}" Cursor="Hand"/>
+            </MenuItem>
+            <MenuItem Header="System Log" Width="auto" Margin="10,0,0,0" Command="{Binding ShowLogCommand}" Cursor="Hand"/>
+            <MenuItem Header="View Graph" Width="auto" Margin="10,0,0,0" Command="{Binding ShowGraphCommand}" Cursor="Hand"/>
+        </Menu>
+        <StackPanel  Orientation="Horizontal" Grid.Column="2"  HorizontalAlignment="Right">
+            <Label Content="Display Options" Margin="0,0,0,0" Foreground="Black" VerticalAlignment="Top" FontSize="14"/>
+            <Button  Width="35" Height="35"  HorizontalAlignment="Right" Cursor="Hand" 
+                         Command="{Binding SetupCommand}" BorderBrush="{x:Null}"  VerticalAlignment="Top"
+                         Background="{x:Null}" Foreground="#FFF1E243" Margin="0,0,0,0" ToolTip="Setup Parameter">
+                <MaterialDesign:PackIcon Kind="Settings" Width="22" Height="22" Margin="0,0,0,9" >
+                    <MaterialDesign:PackIcon.Effect>
+                        <DropShadowEffect/>
+                    </MaterialDesign:PackIcon.Effect>
+                </MaterialDesign:PackIcon>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,636 @@
+﻿<UserControl x:Class="BaleGraphic.Views.TwoLinesGraphicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BaleGraphic.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="1300"  SizeChanged="BaleGraphic_sizeChanged">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Rectangle Grid.Column="3" Grid.Row="1" Panel.ZIndex="0"  
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0068FF" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu  Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Scale Conveyor" Width="auto"   FontWeight="Medium"/>
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count" Width="auto" Command="{Binding IncScaleConvCmd}" />
+                    <MenuItem Header="Decrement Bale Count" Width="auto" Command="{Binding DecScaleConvCmd}"/>
+                    <MenuItem Header="Clear Scale Conveyor" Width="auto"  Command="{Binding ClearScaleConvCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxScaleConvCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorApproachLnOne}" Style="{x:Null}" VerticalAlignment="Center"/>
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="5" Grid.Row="1" Panel.ZIndex="0"  
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0068FF" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Press Conveyor" Width="auto"   FontWeight="Medium"/>
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count" Width="auto" Command="{Binding IncPressConvCmd}"/>
+                    <MenuItem Header="Decrement Bale Count" Width="auto" Command="{Binding DecPressConvCmd}"/>
+                    <MenuItem Header="Clear Press Conveyor" Width="auto"  Command="{Binding ClearPressConvCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxPressConvCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorPressLnOne}" Style="{x:Null}" VerticalAlignment="Center"/>
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="7" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorPressLnOne}" Style="{x:Null}" VerticalAlignment="Center"/>
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="7" Grid.Row="1" Panel.ZIndex="0" 
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0068FF" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu  Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Marker Conveyor" Width="auto"  FontWeight="Medium" />
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count" Width="auto"  Command="{Binding IncMkrConvCmd}"/>
+                    <MenuItem Header="Decrement Bale Count" Width="auto" Command="{Binding DecMkrConvCmd}"/>
+                    <MenuItem Header="Clear Marker Conveyor" Width="auto"  Command="{Binding ClearMkrConvCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxMkrConvLineOneCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Column="7" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorMarkerLnOne}" Style="{x:Null}" VerticalAlignment="Center" />
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="3" Grid.Row="3" Panel.ZIndex="0"  
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF057629" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu  Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Scale Conveyor" Width="auto"   FontWeight="Medium"/>
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count L2" Width="auto" Command="{Binding IncScaleLineTwoConvCmd}" />
+                    <MenuItem Header="Decrement Bale Count L2" Width="auto" Command="{Binding DecScaleLineTwoConvCmd}"/>
+                    <MenuItem Header="Clear Scale Conveyor L2" Width="auto"  Command="{Binding ClearScaleLineTwoConvCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxScaleLineTwoConvCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="3" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorApproachLineTwo}" Style="{x:Null}" VerticalAlignment="Center"/>
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+
+        <Rectangle Grid.Column="5" Grid.Row="3" Panel.ZIndex="0"  
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF057629" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Press Conveyor" Width="auto"   FontWeight="Medium"/>
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count L2" Width="auto" Command="{Binding IncPressLineTwoConvCmd}"/>
+                    <MenuItem Header="Decrement Bale Count L2" Width="auto" Command="{Binding DecPressLineTwoConvCmd}"/>
+                    <MenuItem Header="Clear Press Conveyor L2" Width="auto"  Command="{Binding ClearPressLineTwoConvCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxPressLineTwoConvCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="3" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorPressLineTwo}" Style="{x:Null}" VerticalAlignment="Center"/>
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="7" Grid.Row="3" Panel.ZIndex="0" 
+                           Height="15" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF057629" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="4"
+                                          Direction="330"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="4"/>
+            </Rectangle.Effect>
+            <Rectangle.ContextMenu>
+                <ContextMenu  Visibility="{Binding MenuVisible}">
+                    <MenuItem Header="Marker Conveyor" Width="auto"  FontWeight="Medium" />
+                    <Separator FontWeight="ExtraBold"/>
+                    <MenuItem Header="Increment Bale Count L2" Width="auto"  Command="{Binding IncMkrConvLineTwoCmd}"/>
+                    <MenuItem Header="Decrement Bale Count L2" Width="auto" Command="{Binding DecMkrConvLineTwoCmd}"/>
+                    <MenuItem Header="Clear Marker Conveyor L2" Width="auto"  Command="{Binding ClearMkrConvLineTwoCmd}"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Maximum Capacity" Width="auto"  Command="{Binding MaxMkrConvLineTwoCmd}"/>
+                </ContextMenu>
+            </Rectangle.ContextMenu>
+        </Rectangle>
+        <StackPanel Orientation="Horizontal" Grid.Column="7" Grid.Row="3" Margin="0,0,0,10" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBox  Width="20" HorizontalContentAlignment="Center"
+                   Background="Transparent"  Foreground="Blue" BorderThickness="0"
+                    Text="{Binding BaleConveyorMarkerLineTwo}" Style="{x:Null}" VerticalAlignment="Center" />
+            <Label Content="Bale Count" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Station Two Line One -->
+        <Grid  Grid.Row="1" Grid.Column="1" 
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationDropLineOne}" OpacityMask="Black"/>
+        </Grid>
+        <!--Scale Station-->
+        <Grid  Grid.Row="1" Grid.Column="4"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationScaleLineOne}" OpacityMask="Black"/>
+        </Grid>
+
+        <!--Press Station-->
+        <Grid  Grid.Row="1" Grid.Column="6"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationPressLineOne}" OpacityMask="Black"/>
+        </Grid>
+
+        <!--Marker Station-->
+        <Grid  Grid.Row="1" Grid.Column="8"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationMarkerLineOne}" OpacityMask="Black"/>
+        </Grid>
+
+        <!--Drop Station -->
+        <Grid  Grid.Row="3" Grid.Column="1" 
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationTwoDrop}" OpacityMask="Black"/>
+        </Grid>
+        <!--Scale Station-->
+        <Grid  Grid.Row="3" Grid.Column="4"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationTwoScale}" OpacityMask="Black"/>
+        </Grid>
+
+        <!--Press Station-->
+        <Grid  Grid.Row="3" Grid.Column="6"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationTwoPress}" OpacityMask="Black"/>
+        </Grid>
+
+        <!--Marker Station-->
+        <Grid  Grid.Row="3" Grid.Column="8"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentControl Content="{Binding StationTwoMarker}" OpacityMask="Black"/>
+        </Grid>
+        <Image Grid.Row="1" Grid.Column="9" Grid.RowSpan="3" Margin="10,0,10,0" Source="/BaleGraphic;component/Views/ForteLogoNoName.png" />
+
+        
+        <!--Bale On Conveyor Line 1 -->
+        <Canvas  x:Name="CanvasOne" Grid.Column="2" Grid.Row="1"  Height="40" Grid.ColumnSpan="7"  Margin="0,0,0,0"
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="True" >
+
+            <Grid x:Name="baleOneLineOne"  Height="25" Width="25" Margin="190,0,0,0" Panel.ZIndex="{Binding ZIndexOne}">
+                <ContentControl Content="{Binding BaleOneLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleTwoLineOne"  Height="25" Width="25" Margin="180,0,0,0"  Panel.ZIndex="{Binding ZIndexTwo}">
+                <ContentControl Content="{Binding BaleTwoLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleThreeLineOne"  Height="25" Width="25" Margin="170,0,0,0" Panel.ZIndex="{Binding ZIndexThree}">
+                <ContentControl Content="{Binding BaleThreeLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFourLineOne"  Height="25" Width="25" Margin="160,0,0,0" Panel.ZIndex="{Binding ZIndexFour}">
+                <ContentControl Content="{Binding BaleFourLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFiveLineOne"  Height="25" Width="25" Margin="150,0,0,0" Panel.ZIndex="{Binding ZIndexFive}">
+                <ContentControl Content="{Binding BaleFiveLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleSixLineOne"  Height="25" Width="25" Margin="140,0,0,0" Panel.ZIndex="{Binding ZIndexSix}">
+                <ContentControl Content="{Binding BaleSixLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleSevenLineOne"  Height="25" Width="25" Margin="130,0,0,0"  Panel.ZIndex="{Binding ZIndexSeven}">
+                <ContentControl Content="{Binding BaleSevenLineOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleEightLineOne"  Height="25" Width="25" Margin="120,0,0,0"  Panel.ZIndex="{Binding ZIndexEight}">
+                <ContentControl Content="{Binding BaleEightLineOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleNineLineOne"  Height="25" Width="25" Margin="110,0,0,0" Panel.ZIndex="{Binding ZIndexNine}">
+                <ContentControl Content="{Binding BaleNineLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleTenLineOne"  Height="25" Width="25" Margin="100,0,0,0" Panel.ZIndex="{Binding ZIndexTen}">
+                <ContentControl Content="{Binding BaleTenLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleElevenLineOne"  Height="25" Width="25" Margin="90,0,0,0"  Panel.ZIndex="{Binding ZIndexEleven}">
+                <ContentControl Content="{Binding BaleElevenLineOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleTwelveLineOne"  Height="25" Width="25" Margin="80,0,0,0" Panel.ZIndex="{Binding ZIndexTwelve}">
+                <ContentControl Content="{Binding BaleTwelveLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleThirteenLineOne"  Height="25" Width="25" Margin="70,0,0,0" Panel.ZIndex="{Binding ZIndexThirteen}">
+                <ContentControl Content="{Binding BaleThirteenLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFourteenLineOne"  Height="25" Width="25" Margin="60,0,0,0" Panel.ZIndex="{Binding ZIndexTteen}">
+                <ContentControl Content="{Binding BaleFourteenLineOne}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFifteenLineOne"  Height="25" Width="25" Margin="50,0,0,0" Panel.ZIndex="{Binding ZIndexFifteen}">
+                <ContentControl Content="{Binding BaleFifteenLineOne}" OpacityMask="Black" />
+            </Grid>
+
+            <!-- Default Bale on Scale Conveyor -->
+            <Grid x:Name="defaultbaleOneScaleLnOne"  Height="25" Width="25" Margin="40,0,0,0" Panel.ZIndex="5">
+                <ContentControl Content="{Binding BaleDefaultOneScaleLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoScaleLnOne"  Height="25" Width="25"  Margin="30,0,0,0"   Panel.ZIndex="4">
+                <ContentControl Content="{Binding BaleDefaultTwoScaleLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreeScaleLnOne"  Height="25" Width="25"  Margin="20,0,0,0"  Panel.ZIndex="3">
+                <ContentControl Content="{Binding BaleDefaultThreeScaleLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourScaleLnOne"  Height="25" Width="25"   Margin="10,0,0,0"  Panel.ZIndex="2">
+                <ContentControl Content="{Binding BaleDefaultFourScaleLnOne}" OpacityMask="Black" Height="25" VerticalAlignment="Bottom"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFiveScaleLnOne"  Height="25" Width="25"  Margin="0,0,0,0"  Panel.ZIndex="1">
+                <ContentControl Content="{Binding BaleDefaultFiveScaleLnOne}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Bale on Press Conveyor -->
+            <Grid x:Name="baleOneLnOnePress"  Height="25" Width="25"  Panel.ZIndex="20"  Margin="520,0,0,0">
+                <ContentControl Content="{Binding BaleNumberOneLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleTwoLnOnePress"  Height="25" Width="25"  Panel.ZIndex="19"  Margin="510,0,0,0">
+                <ContentControl Content="{Binding BaleNumberTwoLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleThreeLnOnePress"  Height="25" Width="25" Panel.ZIndex="18"  Margin="500,0,0,0">
+                <ContentControl Content="{Binding BaleNumberThreeLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFourLnOnePress"  Height="25" Width="25"  Panel.ZIndex="17"  Margin="490,0,0,0">
+                <ContentControl Content="{Binding BaleNumberFourLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFiveLnOnePress"  Height="25" Width="25" Panel.ZIndex="16"  Margin="480,0,0,0">
+                <ContentControl Content="{Binding BaleNumberFiveLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleSixLnOnePress"  Height="25" Width="25" Panel.ZIndex="15"  Margin="470,0,0,0">
+                <ContentControl Content="{Binding BaleNumberSixLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleSevenLnOnePress"  Height="25" Width="25" Panel.ZIndex="14"  Margin="460,0,0,0">
+                <ContentControl Content="{Binding BaleNumberSevenLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleEightLnOnePress"  Height="25" Width="25" Panel.ZIndex="13"  Margin="450,0,0,0">
+                <ContentControl Content="{Binding BaleNumberEightLnOnePress}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Default Bale on Press Conveyor -->
+            <Grid x:Name="defaultbaleOnePressLnOne"  Height="25" Width="25"  Panel.ZIndex="10" Margin="440,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultOnePressLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoPressLnOne"  Height="25" Width="25"  Panel.ZIndex="9" Margin="430,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultTwoPressLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreePressLnOne"  Height="25" Width="25" Panel.ZIndex="8" Margin="420,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultThreePressLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourPressLnOne"  Height="25" Width="25"  Panel.ZIndex="7" Margin="410,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFourPressLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFivePressLnOne"  Height="25" Width="25" Panel.ZIndex="6" Margin="400,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFivePressLnOne}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Bale on Marker Conveyor -->
+            <Grid x:Name="baleOneLnOneMrk"  Height="25" Width="25"  Panel.ZIndex="20"  Margin="820,0,0,0">
+                <ContentControl Content="{Binding BaleNumberOneLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleTwoLnOneMrk"  Height="25" Width="25"  Panel.ZIndex="19"  Margin="810,0,0,0">
+                <ContentControl Content="{Binding BaleNumberTwoLineOneMrk}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleThreeLnOneMrk"  Height="25" Width="25" Panel.ZIndex="18"  Margin="800,0,0,0">
+                <ContentControl Content="{Binding BaleNumberThreeLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFourLnOneMrk"  Height="25" Width="25"  Panel.ZIndex="17"  Margin="790,0,0,0">
+                <ContentControl Content="{Binding BaleNumberFourLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFiveLnOneMrk"  Height="25" Width="25" Panel.ZIndex="16"  Margin="780,0,0,0">
+                <ContentControl Content="{Binding BaleNumberFiveLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="baleSixLnOneMrk"  Height="25" Width="25" Panel.ZIndex="15"  Margin="770,0,0,0">
+                <ContentControl Content="{Binding BaleNumberSixLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="baleSevenLnOneMrk"  Height="25" Width="25" Panel.ZIndex="14"  Margin="760,0,0,0">
+                <ContentControl Content="{Binding BaleNumberSevenLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="baleEightLnOneMrk"  Height="25" Width="25" Panel.ZIndex="13"  Margin="750,0,0,0">
+                <ContentControl Content="{Binding BaleNumberEightLnOneMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Default Bale on Marker Conveyor -->
+            <Grid x:Name="defaultbaleOneMrkLnOne"  Height="25" Width="25"  Panel.ZIndex="10"  Margin="740,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultOneMarkerLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoMrkLnOne"  Height="25" Width="25"  Panel.ZIndex="9"  Margin="730,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultTwoMarkerLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreeMrkLnOne"  Height="25" Width="25"  Panel.ZIndex="8"  Margin="720,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultThreeMarkerLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourMrkLnOne"  Height="25" Width="25" Panel.ZIndex="7"  Margin="710,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFourMarkerLnOne}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFiveMrkLnOne"  Height="25" Width="25" Panel.ZIndex="6"  Margin="730,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFiveMarkerLnOne}" OpacityMask="Black"/>
+            </Grid>
+        </Canvas>
+
+
+
+        <!--Bale On Conveyor Line 2 -->
+        <Canvas  x:Name="CanvasTwo" Grid.Column="2" Grid.Row="3"  Height="40" Grid.ColumnSpan="7"  Margin="0,0,0,0"
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="True" >
+
+            <Grid x:Name="baleOneLineTwo"  Height="25" Width="25" Margin="190,0,0,0" Panel.ZIndex="{Binding ZIndexOneL2}">
+                <ContentControl Content="{Binding BaleOneLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleTwoLineTwo"  Height="25" Width="25" Margin="180,0,0,0" Panel.ZIndex="{Binding ZIndexTwoL2}">
+                <ContentControl Content="{Binding BaleTwoLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleThreeLineTwo"  Height="25" Width="25" Margin="170,0,0,0"  Panel.ZIndex="{Binding ZIndexThreeL2}">
+                <ContentControl Content="{Binding BaleThreeLineTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFourLineTwo"  Height="25" Width="25" Margin="160,0,0,0"  Panel.ZIndex="{Binding ZIndexFourL2}">
+                <ContentControl Content="{Binding BaleFourLineTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleFiveLineTwo"  Height="25" Width="25" Margin="150,0,0,0" Panel.ZIndex="{Binding ZIndexFiveL2}">
+                <ContentControl Content="{Binding BaleFiveLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleSixLineTwo"  Height="25" Width="25" Margin="140,0,0,0"  Panel.ZIndex="{Binding ZIndexSixL2}">
+                <ContentControl Content="{Binding BaleSixLineTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="baleSevenLineTwo"  Height="25" Width="25" Margin="130,0,0,0" Panel.ZIndex="{Binding ZIndexSevenL2}">
+                <ContentControl Content="{Binding BaleSevenLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleEightLineTwo"  Height="25" Width="25" Margin="120,0,0,0" Panel.ZIndex="{Binding ZIndexEightL2}">
+                <ContentControl Content="{Binding BaleEightLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleNineLineTwo"  Height="25" Width="25" Margin="110,0,0,0" Panel.ZIndex="{Binding ZIndexNineL2}">
+                <ContentControl Content="{Binding BaleNineLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleTenLineTwo"  Height="25" Width="25" Margin="100,0,0,0" Panel.ZIndex="{Binding ZIndexTenL2}">
+                <ContentControl Content="{Binding BaleTenLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleElevenLineTwo"  Height="25" Width="25" Margin="90,0,0,0" Panel.ZIndex="{Binding ZIndexElevenL2}">
+                <ContentControl Content="{Binding BaleElevenLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleTwelveLineTwo"  Height="25" Width="25" Margin="80,0,0,0" Panel.ZIndex="{Binding ZIndexTwelveL2}">
+                <ContentControl Content="{Binding BaleTwelveLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleThirteenLineTwo"  Height="25" Width="25" Margin="70,0,0,0" Panel.ZIndex="{Binding ZIndexThirteenL2}">
+                <ContentControl Content="{Binding BaleThirteenLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFourteenLineTwo"  Height="25" Width="25" Margin="60,0,0,0" Panel.ZIndex="{Binding ZIndexForteenL2}">
+                <ContentControl Content="{Binding BaleFourteenLineTwo}" OpacityMask="Black" />
+            </Grid>
+            <Grid x:Name="baleFifteenLineTwo"  Height="25" Width="25" Margin="50,0,0,0" Panel.ZIndex="{Binding ZIndexFifteenL2}">
+                <ContentControl Content="{Binding BaleFifteenLineTwo}" OpacityMask="Black" />
+            </Grid>
+
+            <!-- Default Bale on Scale Conveyor -->
+            <Grid x:Name="defaultbaleOneScaleLnTwo"  Height="25" Width="25"  Panel.ZIndex="9" Margin="40,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultOneScaleLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoScaleLnTwo"  Height="25" Width="25"  Panel.ZIndex="8" Margin="30,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultTwoScaleLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreeScaleLnTwo"  Height="25" Width="25" Panel.ZIndex="7" Margin="20,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultThreeScaleLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourScaleLnTwo"  Height="25" Width="25"  Panel.ZIndex="6" Margin="10,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFourScaleLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFiveScaleLnTwo"  Height="25" Width="25" Panel.ZIndex="5" Margin="0,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFiveScaleLnTwo}" OpacityMask="Black"/>
+            </Grid>
+
+
+            <!-- Bale on Press Conveyor -->
+            <Grid x:Name="pressbaleOneLineTwo"  Height="25" Width="25"  Panel.ZIndex="20"  Margin="520,0,0,0">
+                <ContentControl Content="{Binding BaleOneLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleTwoLineTwo"  Height="25" Width="25"  Panel.ZIndex="19"  Margin="510,0,0,0">
+                <ContentControl Content="{Binding BaleTwoLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleThreeLineTwo"  Height="25" Width="25"  Panel.ZIndex="18"  Margin="500,0,0,0">
+                <ContentControl Content="{Binding BaleThreeLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleFourLineTwo"  Height="25" Width="25"  Panel.ZIndex="17"  Margin="490,0,0,0">
+                <ContentControl Content="{Binding BaleFourLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleFiveLineTwo"  Height="25" Width="25"  Panel.ZIndex="16"  Margin="480,0,0,0">
+                <ContentControl Content="{Binding BaleFiveLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleSixLineTwo"  Height="25" Width="25"  Panel.ZIndex="15"  Margin="470,0,0,0">
+                <ContentControl Content="{Binding BaleSixLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleSevenLineTwo"  Height="25" Width="25"  Panel.ZIndex="14"  Margin="460,0,0,0">
+                <ContentControl Content="{Binding BaleSevenLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="pressbaleEightLineTwo"  Height="25" Width="25"  Panel.ZIndex="13"  Margin="450,0,0,0">
+                <ContentControl Content="{Binding BaleEightLineTwoPress}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Default Bale on Press Conveyor -->
+            <Grid x:Name="defaultbaleOnePressLnTwo"  Height="25" Width="25"  Panel.ZIndex="10" Margin="440,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultOnePressLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoPressLnTwo"  Height="25" Width="25"  Panel.ZIndex="9" Margin="430,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultTwoPressLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreePressLnTwo"  Height="25" Width="25" Panel.ZIndex="8" Margin="420,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultThreePressLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourPressLnTwo"  Height="25" Width="25"  Panel.ZIndex="7" Margin="410,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFourPressLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFivePressLnTwo"  Height="25" Width="25" Panel.ZIndex="6" Margin="400,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFivePressLnTwo}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Bale on Marker Conveyor -->
+            <Grid x:Name="mrkbaleOneLineTwo"  Height="25" Width="25"  Panel.ZIndex="20"  Margin="820,0,0,0">
+                <ContentControl Content="{Binding BaleOneLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleTwoLineTwo"  Height="25" Width="25"  Panel.ZIndex="19"  Margin="810,0,0,0">
+                <ContentControl Content="{Binding BaleTwoLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleThreeLineTwo"  Height="25" Width="25"  Panel.ZIndex="18"  Margin="800,0,0,0">
+                <ContentControl Content="{Binding BaleThreeLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleFourLineTwo"  Height="25" Width="25"  Panel.ZIndex="17"  Margin="790,0,0,0">
+                <ContentControl Content="{Binding BaleFourLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleFiveLineTwo"  Height="25" Width="25"  Panel.ZIndex="16"  Margin="780,0,0,0">
+                <ContentControl Content="{Binding BaleFiveLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleSixLineTwo"  Height="25" Width="25"  Panel.ZIndex="15"  Margin="770,0,0,0">
+                <ContentControl Content="{Binding BaleSixLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleSevenLineTwo"  Height="25" Width="25"  Panel.ZIndex="14"  Margin="760,0,0,0">
+                <ContentControl Content="{Binding BaleSevenLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <Grid x:Name="mrkbaleEightLineTwo"  Height="25" Width="25"  Panel.ZIndex="13"  Margin="750,0,0,0">
+                <ContentControl Content="{Binding BaleEightLineTwoMrk}" OpacityMask="Black"/>
+            </Grid>
+
+            <!-- Default Bale on Marker Conveyor -->
+            <Grid x:Name="defaultbaleOneMrkLnTwo"  Height="25" Width="25"  Panel.ZIndex="12" Margin="740,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultOneMarkerLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleTwoMrkLnTwo"  Height="25" Width="25"  Panel.ZIndex="11" Margin="730,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultTwoMarkerLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleThreeMrkLnTwo"  Height="25" Width="25"  Panel.ZIndex="10" Margin="720,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultThreeMarkerLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFourMrkLnTwo"  Height="25" Width="25" Panel.ZIndex="9" Margin="710,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFourMarkerLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <Grid x:Name="defaultbaleFiveMrkLnTwo"  Height="25" Width="25" Panel.ZIndex="8" Margin="700,0,0,0">
+                <ContentControl Content="{Binding BaleDefaultFiveMarkerLnTwo}" OpacityMask="Black"/>
+            </Grid>
+            <!--Bale On Conveyor Line 2 -->
+
+
+        </Canvas>
+
+
+    </Grid>
+</UserControl>
